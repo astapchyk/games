@@ -1,6 +1,10 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import router, { changeRoute } from './router';
 
-import App from './components/App';
-
-ReactDOM.render(<App />, document.getElementById('root'));
+(async function () {
+  const list = Array.from(document.querySelectorAll('sidebar > ul > li'));
+  const hrefList = list.map((item) => item.getAttribute('data-href'));
+  list.forEach((item, index) =>
+    item.addEventListener('click', () => changeRoute(hrefList[index])),
+  );
+  router(location.pathname);
+})();

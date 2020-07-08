@@ -2,7 +2,6 @@ const { resolve } = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 // const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
-// const {ProvidePlugin} = require('webpack');
 
 module.exports = {
   mode: 'development',
@@ -11,9 +10,9 @@ module.exports = {
     index: './src/index.tsx',
   },
   output: {
-    filename: '[name].bundle.js',
-    chunkFilename: '[name].bundle.js',
-    // publicPath: 'dist/',
+    publicPath: '/',
+    filename: 'main.[contenthash].js',
+    chunkFilename: '[name].[contenthash].js',
     path: resolve(__dirname, 'dist'),
   },
   module: {
@@ -30,6 +29,9 @@ module.exports = {
   },
   devServer: {
     contentBase: './dist',
+    port: 3000,
+    hot: true,
+    historyApiFallback: true,
   },
   plugins: [
     new CleanWebpackPlugin({
@@ -39,9 +41,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'Development',
       template: './src/assets/index.html',
+      favicon: './src/assets/favicon.ico',
     }),
-    // new ProvidePlugin({
-    //     _: 'lodash',
-    // }),
   ],
 };
