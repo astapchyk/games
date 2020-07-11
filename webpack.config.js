@@ -7,12 +7,12 @@ module.exports = {
   mode: 'development',
   devtool: 'inline-source-map',
   entry: {
-    index: './src/index.tsx',
+    index: './src/index.ts',
   },
   output: {
     publicPath: '/',
-    filename: 'main.[contenthash].js',
-    chunkFilename: '[name].[contenthash].js',
+    filename: 'main.[hash].js',
+    chunkFilename: '[name].[hash].js',
     path: resolve(__dirname, 'dist'),
   },
   module: {
@@ -21,6 +21,25 @@ module.exports = {
         test: /\.tsx?$/,
         use: 'ts-loader',
         exclude: /node_modules/,
+      },
+      {
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          'css-loader',
+          {
+            loader: 'postcss-loader',
+            options: {
+              ident: 'postcss',
+              plugins: (loader) => [
+                require('postcss-import')({ root: loader.resourcePath }),
+                require('postcss-preset-env')(),
+                require('cssnano')(),
+                require('postcss-nesting')(),
+              ],
+            },
+          },
+        ],
       },
     ],
   },

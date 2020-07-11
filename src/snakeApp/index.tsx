@@ -3,9 +3,10 @@ export async function loadApp(): Promise<void> {
   const { render } = await import('react-dom');
 
   const App = React.lazy(() => import('./components/App'));
+  // import * as styles from './styles.css';
 
   render(
-    <React.Suspense fallback={<div>Loading...</div>}>
+    <React.Suspense fallback={<div className={styles.loader}>Loading...</div>}>
       <App />
     </React.Suspense>,
     document.getElementById('root'),
