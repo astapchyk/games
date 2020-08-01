@@ -26,7 +26,11 @@ module.exports = {
         test: /\.css$/,
         use: [
           'style-loader',
-          'css-loader',
+          'css-modules-typescript-loader',
+          {
+            loader: 'css-loader',
+            options: { modules: true },
+          },
           {
             loader: 'postcss-loader',
             options: {
@@ -44,7 +48,7 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: ['.tsx', '.ts', '.js'],
+    extensions: ['.tsx', '.ts', '.js', '.css'],
   },
   devServer: {
     contentBase: './dist',

@@ -1,0 +1,14 @@
+.cell {
+  position: absolute;
+  width: calc(100%/16);
+  height: calc(100%/16);
+}
+
+.food {
+  background-color: yellow;
+}
+
+.snake {
+  background-color: lavender;
+  z-index: 1;
+}

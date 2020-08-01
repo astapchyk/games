@@ -1,6 +1,7 @@
 import React, { ReactElement } from 'react';
 
 import RenderIt from './RenderIt';
+import Loader from './Loader';
 
 type BaseWrapperProps = {
   isEmpty?: boolean;
@@ -9,10 +10,6 @@ type BaseWrapperProps = {
   loadingContent?: ReactElement;
   children?: ReactElement;
 };
-
-function Loader(): ReactElement {
-  return <div>is loading...</div>;
-}
 
 function Wrapper({
   isEmpty,

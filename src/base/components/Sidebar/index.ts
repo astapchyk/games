@@ -1,4 +1,7 @@
-import { changeRoute } from '../../router';
+import { changeRoute } from '../../../router';
+
+import styles from './style.css';
+import { getClassNames } from '../../../snakeApp/utils/common';
 
 interface Styles {
   container: string;
@@ -6,6 +9,8 @@ interface Styles {
   links: string;
   link: string;
   activeLink: string;
+  toggle: string;
+  arrow: string;
 }
 
 interface Link {
@@ -20,11 +25,13 @@ interface SidebarElement {
 }
 
 const STYLES: Styles = {
-  container: 'navigation',
-  hiddenContainer: 'hidden',
-  links: 'links',
-  link: 'link',
-  activeLink: 'active',
+  container: styles.navigation,
+  hiddenContainer: styles.hidden,
+  links: styles.links,
+  link: styles.link,
+  activeLink: styles.active,
+  toggle: styles.toggle,
+  arrow: styles.arrow,
 };
 
 const LINKS: Link[] = [
@@ -76,45 +83,44 @@ class Sidebar {
       this.sync();
       this.setHandlers();
     } else {
-      throw Error('An initialisation error. Please, check your config.');
+      throw new Error('An initialisation error. Please, check your config.');
     }
   }
 
   static generateTemplate(links: Link[], styles: Styles): boolean {
-    if (links.length) {
-      const { container, hiddenContainer, link, activeLink } = styles;
-      const hiddenClass: string = localStorage.getItem('isHidden')
-        ? hiddenContainer
-        : '';
-      const activeLinkClass = (url: string): string =>
-        url === location.pathname ? activeLink : '';
+    if (links.length === 0) return false;
 
-      const template = `
-        <nav class="${container} ${hiddenClass}">
+    const { container, hiddenContainer, link, activeLink } = styles;
+    const hiddenClass: string = localStorage.getItem('isHidden')
+      ? hiddenContainer
+      : '';
+    const activeLinkClass = (url: string): string =>
+      url === location.pathname ? activeLink : '';
+
+    const template = `
+        <nav class=${getClassNames(container, hiddenClass)}>
           <ul>
           ${links
             .map(
               ({ url, title }) => `
               <li 
-                class="${link} ${activeLinkClass(url)}" 
-                data-href="${url}"
+                class=${getClassNames(link, activeLinkClass(url))} 
+                data-href=${url}
                 >
                   ${title}
               </li>`,
             )
             .join('')}
           </ul>
-          <div class="toggle">
-            <i class="arrow"></i>
+          <div class=${styles.toggle}>
+            <i class=${styles.arrow}></i>
           </div>
         </nav>
       `;
 
-      document.body.insertAdjacentHTML('afterbegin', template);
+    document.body.insertAdjacentHTML('afterbegin', template);
 
-      return true;
-    }
-    return false;
+    return true;
   }
 
   static getElements(
@@ -132,9 +138,9 @@ class Sidebar {
   sync(): void {
     const { getElements } = Sidebar;
 
-    const container = getElements('.navigation') as Element;
+    const container = getElements(`.${this.styles.container}`) as Element;
     const links: Element | Element[] = getElements(
-      '.navigation > ul > li.link',
+      `.${styles.link}`,
       container as Element,
     );
 
@@ -152,7 +158,10 @@ class Sidebar {
 
     this.sidebar = {
       container: container as Element,
-      toggle: getElements('.toggle', container as Element) as Element,
+      toggle: getElements(
+        `.${this.styles.toggle}`,
+        container as Element,
+      ) as Element,
       links: convertLinksToObject(links),
     };
   }

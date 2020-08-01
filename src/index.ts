@@ -1,7 +1,7 @@
-import Sidebar from './base/components/Sidebar';
+import Sidebar from './base/components/Sidebar/index';
 import router from './router';
 
-import './assets/style.css';
+import './assets/main.css';
 
 (async function () {
   new Sidebar();
