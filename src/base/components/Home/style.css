@@ -1,0 +1,9 @@
+.content {
+  min-height: 100vh;
+  margin: 0 auto;
+  width: auto;
+  max-width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

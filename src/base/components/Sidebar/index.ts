@@ -98,13 +98,13 @@ class Sidebar {
       url === location.pathname ? activeLink : '';
 
     const template = `
-        <nav class=${getClassNames(container, hiddenClass)}>
+        <nav class="${getClassNames(container, hiddenClass)}">
           <ul>
           ${links
             .map(
               ({ url, title }) => `
               <li 
-                class=${getClassNames(link, activeLinkClass(url))} 
+                class="${getClassNames(link, activeLinkClass(url))}"
                 data-href=${url}
                 >
                   ${title}
@@ -126,7 +126,7 @@ class Sidebar {
   static getElements(
     selector: string,
     from: Element = document.body,
-  ): null | Element | Element[] {
+  ): Element | Element[] {
     if (typeof selector !== 'string') return null;
 
     const elements = Array.from(from.querySelectorAll(selector));
@@ -172,8 +172,8 @@ class Sidebar {
 
     (Object.keys(links) as Array<string>).forEach((key: string) =>
       links[key].addEventListener('click', () => {
-        links[location.pathname].classList.remove(activeLink);
-        links[key].classList.add(activeLink);
+        links[location.pathname]?.classList.remove(activeLink);
+        links[key]?.classList.add(activeLink);
         return this.onLinkClick(key);
       }),
     );

@@ -21,8 +21,8 @@ const Cell = memo(
     return (
       <div
         style={{
-          left: `${cell.x * 5}.01vh`,
-          top: `${cell.y * 5}.01vh`,
+          left: `${cell.x * 5}vh`,
+          top: `${cell.y * 5}vh`,
         }}
         className={getClassNames(styles.cell, className)}
       />
