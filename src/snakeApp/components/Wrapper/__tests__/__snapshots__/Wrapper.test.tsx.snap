@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Wrapper /> renders the empty component with a custom content 1`] = `
+<div>
+  <div>
+    a custom content of the empty component
+  </div>
+</div>
+`;
+
+exports[`<Wrapper /> renders the empty component with default content 1`] = `<div />`;
+
+exports[`<Wrapper /> renders the loader component with a custom content 1`] = `
+<div>
+  <div>
+     
+    a custom content of the loader component
+     
+  </div>
+</div>
+`;
+
+exports[`<Wrapper /> renders the loading component with default content 1`] = `
+<div>
+  <div>
+    is loading...
+  </div>
+</div>
+`;
+
+exports[`<Wrapper /> renders the render it component with data 1`] = `
+<div>
+  <div>
+    children data
+  </div>
+</div>
+`;

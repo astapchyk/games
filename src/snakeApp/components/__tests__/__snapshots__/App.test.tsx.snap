@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<App /> renders the component 1`] = `
+<div>
+  <div
+    class="container"
+  >
+    <span
+      class="title"
+    >
+      <h1>
+        Snake App
+      </h1>
+    </span>
+    <div
+      class="content"
+    >
+      <div
+        class="cell snake"
+        style="left: 75vh; top: 75vh;"
+      />
+    </div>
+    <span
+      class="score"
+    />
+  </div>
+</div>
+`;

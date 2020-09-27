@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Cell /> renders the component 1`] = `
+<div>
+  <div
+    class="cell food"
+    style="left: 5vh; top: 10vh;"
+  />
+</div>
+`;

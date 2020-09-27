@@ -21,7 +21,6 @@ enum Direction {
   Right = 'ArrowRight',
   Enter = 'Enter',
   Space = ' ',
-  Esc = 'Escape',
 }
 
 interface Area {
@@ -96,9 +95,10 @@ class Area extends Component {
         break;
       }
       case Direction.Space:
-      case Direction.Enter:
+      case Direction.Enter: {
         this.setState({ isStopped: !this.state.isStopped });
         break;
+      }
       default:
         break;
     }

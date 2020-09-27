@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Area /> renders the component 1`] = `
+<div>
+  <div
+    class="cell snake"
+    style="left: 75vh; top: 75vh;"
+  />
+</div>
+`;
